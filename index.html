@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio d'Abdoul Diallo - Designer numérique et développeur passionné par les applications modernes et l'intelligence artificielle." />
+  <meta property="og:title" content="Portfolio | Abdoul Diallo" />
+  <meta property="og:description" content="Designer numérique et développeur passionné par les applications mobiles, le design et l'IA." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#1A0C2B" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>" />
+  <title>Portfolio | Abdoul Diallo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'portfolio': {
+              'bg': '#0F0A1A',
+              'card': '#2D2A4A',
+              'accent': '#8B5CF6',
+              'accent-light': '#A78BFA',
+            },
+          },
+          fontFamily: {
+            'outfit': ['Outfit', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      scroll-behavior: smooth;
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.15), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(139, 92, 246, 0.08), transparent),
+        #0F0A1A;
+    }
+
+    section {
+      scroll-margin-top: 5rem;
+    }
+
+    .text-gradient-purple {
+      background: linear-gradient(135deg, #C4B5FD 0%, #8B5CF6 50%, #6D28D9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 50%, #D946EF 100%);
+    }
+
+    .btn-gradient:hover {
+      background: linear-gradient(135deg, #7C3AED 0%, #9333EA 50%, #C026D3 100%);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+    }
+
+    /* Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in {
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .project-card {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-card.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+    }
+
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    #mobile-menu.open {
+      max-height: 300px;
+    }
+
+    .glass {
+      background: rgba(45, 42, 74, 0.6);
+      backdrop-filter: blur(12px);
+    }
+
+    .scroll-bounce {
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, #8B5CF6, #A855F7);
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    /* Animations compétences (survol) */
+    .skill-badge {
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .skill-badge:hover {
+      transform: translateY(-4px) scale(1.05);
+      background: rgba(139, 92, 246, 0.35);
+      border-color: rgba(139, 92, 246, 0.6);
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.25);
+    }
+
+    .skill-metric-card {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+    }
+    .skill-metric-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -12px rgba(139, 92, 246, 0.2);
+      border-color: rgba(139, 92, 246, 0.25);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .project-card, .fade-in, .skill-badge, .skill-metric-card { transition: none; animation: none; }
+      .reveal, .project-card { opacity: 1; transform: none; }
+      .fade-in { opacity: 1; transform: none; }
+      .skill-badge:hover, .skill-metric-card:hover { transform: none; }
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #8B5CF6;
+      outline-offset: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      padding: 0.5rem 1rem;
+      background: #8B5CF6;
+      color: white;
+      border-radius: 0.75rem;
+      z-index: 100;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+    }
+  </style>
+</head>
+<body class="text-white min-h-screen">
+<a href="#home" class="skip-link">Aller au contenu</a>
+
+<!-- Navbar -->
+<nav class="fixed w-full z-50 glass border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="#home" class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-[#6D28D9] flex items-center justify-center font-bold text-white text-lg">A</div>
+      <span class="text-xl font-bold tracking-tight">DIALLO</span>
+    </a>
+
+    <button id="menu-btn" class="md:hidden p-2 rounded-lg hover:bg-white/5" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+
+    <ul class="hidden md:flex items-center gap-10 text-gray-400 text-sm font-medium">
+      <li><a href="#about" class="hover:text-white transition-colors">À propos</a></li>
+      <li><a href="#projects" class="hover:text-white transition-colors">Projets</a></li>
+      <li><a href="#skills" class="hover:text-white transition-colors">Compétences</a></li>
+      <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+    </ul>
+
+    <a href="#contact" class="hidden md:inline-flex items-center gap-2 btn-gradient px-6 py-2.5 rounded-full text-sm font-medium text-white transition-all">
+      Discuter
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden px-6 pb-4 border-t border-white/5" role="navigation">
+    <div class="pt-4 flex flex-col gap-2">
+<a href="#about" class="py-2 text-gray-400 hover:text-white">À propos</a>
+    <a href="#projects" class="py-2 text-gray-400 hover:text-white">Projets</a>
+    <a href="#skills" class="py-2 text-gray-400 hover:text-white">Compétences</a>
+    <a href="#contact" class="py-2 text-gray-400 hover:text-white">Contact</a>
+      <a href="#contact" class="py-3 mt-2 btn-gradient rounded-full text-center">Discuter</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="relative min-h-screen flex items-center pt-24 pb-16 px-6 overflow-hidden">
+  <div class="max-w-7xl mx-auto w-full">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Colonne gauche -->
+      <div class="fade-in">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-8 h-px bg-[#8B5CF6]"></div>
+          <span class="text-[#A78BFA] text-sm font-medium tracking-[0.2em] uppercase">Développeur web & Designer</span>
+        </div>
+
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6">
+          <span class="block text-white">ABDOUL</span>
+          <span class="block text-gradient-purple">DIALLO</span>
+        </h1>
+
+        <p class="text-gray-400 text-lg max-w-xl mb-10 leading-relaxed">
+          Développeur web passionné par les <strong class="text-gray-300">applications mobiles</strong>, le design numérique et l'intelligence artificielle. Je transforme des idées en projets réels. Basé au Bénin, je travaille à l'international.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-12">
+          <a href="#projects" class="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition-all">
+            Voir les projets
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="assets/CV_Abdoul_Diallo.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 rounded-full font-medium hover:bg-white/5 transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            CV
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-8">
+          <span class="text-white font-semibold">1+ ans d'expérience</span>
+          <span class="text-white font-semibold">3+ projets</span>
+          <div class="flex items-center gap-3">
+            <div class="flex -space-x-2">
+              <div class="w-8 h-8 rounded-full bg-[#8B5CF6] border-2 border-[#0F0A1A]"></div>
+              <div class="w-8 h-8 rounded-full bg-[#A855F7] border-2 border-[#0F0A1A]"></div>
+              <div class="w-8 h-8 rounded-full bg-[#6D28D9] border-2 border-[#0F0A1A]"></div>
+            </div>
+            <span class="text-white font-medium">Clients satisfaits</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne droite -->
+      <div class="relative fade-in lg:pl-8">
+        <div class="relative inline-block">
+          <div class="relative rounded-2xl overflow-hidden aspect-[4/5] max-h-[500px] bg-gradient-to-br from-[#2D2A4A] to-[#1E1E2C] shadow-2xl">
+            <img src="assets/photo.png" alt="Abdoul Diallo" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 text-sm font-medium tracking-widest scroll-bounce">
+      <span>SCROLL</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- Selected Work -->
+<section id="projects" class="py-24 px-6 reveal">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold">Projets sélectionnés</h2>
+      <a href="#projects" class="inline-flex items-center gap-2 text-[#8B5CF6] hover:text-[#A78BFA] font-medium transition-colors">
+        Voir tous les projets
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+      <article class="project-card group bg-[#2D2A4A]/60 rounded-2xl overflow-hidden border border-white/5 hover:border-[#8B5CF6]/30 transition-all">
+        <div class="p-6 relative">
+          <h3 class="text-xl font-bold mb-2">Maillozone</h3>
+          <p class="text-gray-500 text-sm mb-4">Django • E-commerce</p>
+          <a href="#" class="absolute bottom-6 right-6 w-10 h-10 rounded-lg bg-[#8B5CF6] flex items-center justify-center hover:bg-[#7C3AED] transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="project-card group bg-[#2D2A4A]/60 rounded-2xl overflow-hidden border border-white/5 hover:border-[#8B5CF6]/30 transition-all">
+        <div class="p-6 relative">
+          <h3 class="text-xl font-bold mb-2">Application Django</h3>
+          <p class="text-gray-500 text-sm mb-4">Python • Gestion clients</p>
+          <a href="#" class="absolute bottom-6 right-6 w-10 h-10 rounded-lg bg-[#8B5CF6] flex items-center justify-center hover:bg-[#7C3AED] transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="project-card group bg-[#2D2A4A]/60 rounded-2xl overflow-hidden border border-white/5 hover:border-[#8B5CF6]/30 transition-all">
+        <div class="p-6 relative">
+          <h3 class="text-xl font-bold mb-2">Portfolio Moderne</h3>
+          <p class="text-gray-500 text-sm mb-4">Tailwind CSS • JavaScript</p>
+          <a href="#" class="absolute bottom-6 right-6 w-10 h-10 rounded-lg bg-[#8B5CF6] flex items-center justify-center hover:bg-[#7C3AED] transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="project-card group bg-[#2D2A4A]/60 rounded-2xl overflow-hidden border border-white/5 hover:border-[#8B5CF6]/30 transition-all">
+        <div class="p-6 relative">
+          <h3 class="text-xl font-bold mb-2">Exploration IA</h3>
+          <p class="text-gray-500 text-sm mb-4">Intelligence artificielle • Python</p>
+          <a href="#" class="absolute bottom-6 right-6 w-10 h-10 rounded-lg bg-[#8B5CF6] flex items-center justify-center hover:bg-[#7C3AED] transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Technical Proficiency -->
+<section id="skills" class="py-24 px-6 reveal">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-4xl md:text-5xl font-bold mb-16">Compétences techniques</h2>
+
+    <div class="grid lg:grid-cols-2 gap-16">
+      <!-- Technologies principales -->
+      <div>
+        <h3 class="text-gray-500 text-sm font-medium tracking-widest uppercase mb-8">Technologies principales</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="skill-badge inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B5CF6]/20 text-white border border-[#8B5CF6]/30 font-medium cursor-default">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#3776AB"><path d="M13.4 0h-2.8v12.4h2.8V9.35l2.9.87 1.45-2.32-4.35-1.45V0zM9.75 2.9l-.72 1.16 1.74.58.58-1.74-1.6-.01zm4.64 3.52l-1.16.72.01 1.6 1.74-.58-.59-1.74zm.58 4.35l-2.32 1.45-.87-2.9 3.19-1.45v2.9zM9.25 8.12L6.06 9.58v2.9l3.19 1.45.87-2.9-2.32-1.45zm-3.48-.01l-.01 1.6 1.74.58.58-1.74-2.31-.44zM5.8 6.67l1.45 2.32 2.9-.87V2.9H5.8v2.9l2.32 1.45-.87 2.9-2.9-.58v-2.32l1.9-.58zm.58 4.35l1.45 2.32 1.6-.01.72 1.16-3.77 1.45V11.02zm-2.9 4.64l2.9.87 1.45-2.32-2.32-1.45-.03-2.32-2.9.58v2.32l1.9.58zm4.35.58l.58 1.74 1.74.58 1.6-.01.72 1.16-4.64 1.45v-4.92zm4.35-.58l2.32 1.45 1.45-2.32-.58-1.74 1.6-.01.72-1.16-3.77-1.45v2.32zm2.32-2.9l-1.74-.58-.58 1.74 1.16.72 1.16-.72zm-9.86-1.16l-.58 1.74 1.74.58 2.32 1.45-1.45 2.32-2.9-.87-.87 2.9-2.32-1.45 1.45-2.32 2.9.87.58-1.74-1.16-.72v-1.16l1.16-.72z"/></svg>
+            Python
+          </span>
+          <span class="skill-badge inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B5CF6]/20 text-white border border-[#8B5CF6]/30 font-medium cursor-default">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#02569B"><path d="M14.314 0L2.3 12 6 12 6 24 17.042 24 17.042 12 21.684 12 14.314 0zm.014 11.072l2.29 3.924h-4.572l2.282-3.924zm-5.79 2.064l-2.29-3.924h4.572l-2.282 3.924zm4.572 0l2.29 3.924H9.8l2.282-3.924zm-4.572 2.064l2.29 3.924-6.572.012L2.3 15.14l6.238-.012z"/></svg>
+            Flutter
+          </span>
+          <span class="skill-badge inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B5CF6]/20 text-white border border-[#8B5CF6]/30 font-medium cursor-default">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#092E20"><path d="M11.146 0h3.924v18.166c-2.013.382-3.491.535-6.031.535-4.93 0-7.469-1.774-7.469-6.301 0-4.402 2.494-6.502 6.576-6.502.637 0 1.121.05 1.707.203zm0 9.143a3.894 3.894 0 0 0-1.939-.469c-1.466 0-2.277.768-2.277 2.049 0 1.281.811 2.049 2.277 2.049a3.938 3.938 0 0 0 1.939-.392V9.143z"/><path d="M15.385 0h3.924v18.166c2.013.382 3.491.535 6.031.535 4.93 0 7.469-1.774 7.469-6.301 0-4.402-2.494-6.502-6.576-6.502-.637 0-1.121.05-1.707.203zm0 9.143a3.894 3.894 0 0 1 1.939-.469c1.466 0 2.277.768 2.277 2.049 0 1.281-.811 2.049-2.277 2.049a3.938 3.938 0 0 1-1.939-.392V9.143z"/></svg>
+            Django
+          </span>
+          <span class="skill-badge inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B5CF6]/20 text-white border border-[#8B5CF6]/30 font-medium cursor-default">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#F7DF1E"><path d="M3 3h18v18H3V3zm16.525 13.707c-.131-.821-.666-1.511-2.252-2.155-.552-.259-1.165-.438-1.349-.854-.068-.248-.048-.341.193-.539.229-.194.327-.35.327-.703 0-.501-.306-.769-.983-.769-.653 0-1.001.264-1.215.571-.218.308-.337.77-.337 1.234h-1.528c.007-1.185.333-2.063.951-2.648.618-.581 1.435-.862 2.436-.862 1.084 0 1.896.273 2.403.81.509.538.73 1.26.73 2.215 0 1.275-.563 2.074-1.563 2.603-.812.417-1.299.683-1.299 1.132 0 .336.238.548.603.548.358 0 .666-.158.938-.484.271-.325.401-.768.401-1.234h1.529c-.006.979-.286 1.702-.821 2.242-.535.541-1.272.806-2.211.806-1.169 0-2.044-.362-2.609-1.079-.563-.714-.848-1.608-.848-2.645zm-8.084.027h1.528c.058-1.019.404-1.806 1.036-2.333.63-.528 1.461-.791 2.471-.791 1.017 0 1.84.263 2.471.791.632.527.979 1.314 1.036 2.333h1.528c-.048-1.558-.538-2.765-1.464-3.616-.926-.851-2.161-1.277-3.576-1.277-1.415 0-2.65.426-3.576 1.277-.926.851-1.416 2.058-1.464 3.616z"/></svg>
+            JavaScript
+          </span>
+          <span class="skill-badge inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B5CF6]/20 text-white border border-[#8B5CF6]/30 font-medium cursor-default">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#E34F26"><path d="M1.5 0h21L10.5 24l-4-8H17L1.5 0zm9 9l2 4h3l-5-9-5 9h3l2-4z"/></svg>
+            HTML / CSS
+          </span>
+          <span class="skill-badge inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B5CF6]/20 text-white border border-[#8B5CF6]/30 font-medium cursor-default">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#06B6D4"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-2.2.9 0 1.8.2 2.5.7.7.5 1.2 1.1 1.4 1.8.3-.1.6-.2 1-.2 1.1 0 2.2.6 2.8 1.4.6.9.8 1.9.8 2.8 0 .6-.1 1.2-.2 1.8-.3 1.5-1 2.8-2 3.9-.7.7-1.5 1.2-2.3 1.5-.9.3-1.7.4-2.6.4-1.7 0-3.2-.4-4.3-1.2-1.2-.8-2.1-2-2.6-3.5-.4-1.2-.6-2.4-.6-3.6 0-2 .5-3.8 1.5-5.4 1-1.6 2.4-2.8 4-3.6.2-.1.4-.2.6-.3z"/></svg>
+            Tailwind CSS
+          </span>
+          <span class="skill-badge inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B5CF6]/20 text-white border border-[#8B5CF6]/30 font-medium cursor-default">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            Design
+          </span>
+          <span class="skill-badge inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#8B5CF6]/20 text-white border border-[#8B5CF6]/30 font-medium cursor-default">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M15.852 8.981h-4.588V0h4.588v8.981zM8.148 8.981H3.56V0h4.588v8.981zm7.704 0V24h4.588V8.981h-4.588zM8.148 24V8.981H3.56V24h4.588zm0-15.019V0H3.56v8.962h4.588z"/></svg>
+            Figma
+          </span>
+        </div>
+      </div>
+
+      <!-- Performance Metrics -->
+      <div>
+        <h3 class="text-gray-500 text-sm font-medium tracking-widest uppercase mb-8">Indicateurs de performance</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="skill-metric-card bg-[#2D2A4A]/60 rounded-2xl p-6 border border-white/5">
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-gray-400 text-sm">Satisfaction projet</span>
+              <svg class="w-6 h-6 text-[#8B5CF6]" fill="currentColor" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3z"/></svg>
+            </div>
+            <p class="text-3xl font-bold mb-1 text-gray-500">—</p>
+            <p class="text-gray-500 text-sm">_</p>
+          </div>
+          <div class="skill-metric-card bg-[#2D2A4A]/60 rounded-2xl p-6 border border-white/5">
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-gray-400 text-sm">Qualité du code</span>
+              <svg class="w-6 h-6 text-[#8B5CF6]" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <p class="text-3xl font-bold mb-1 text-gray-500">—</p>
+            <p class="text-gray-500 text-sm">_</p>
+          </div>
+          <div class="skill-metric-card bg-[#2D2A4A]/60 rounded-2xl p-6 border border-white/5">
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-gray-400 text-sm">Efficacité</span>
+              <svg class="w-6 h-6 text-[#8B5CF6]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+            <p class="text-3xl font-bold mb-1 text-gray-500">—</p>
+            <p class="text-gray-500 text-sm">_</p>
+          </div>
+          <div class="skill-metric-card bg-[#2D2A4A]/60 rounded-2xl p-6 border border-white/5">
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-gray-400 text-sm">Engagement</span>
+              <svg class="w-6 h-6 text-[#8B5CF6]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <p class="text-3xl font-bold mb-1 text-gray-500">—</p>
+            <p class="text-gray-500 text-sm">_</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="py-24 px-6 reveal">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-8">À propos de moi</h2>
+    <p class="text-gray-400 leading-relaxed text-lg">
+      Je suis Abdoul Diallo, passionné par la création de solutions numériques modernes.
+      J'aime développer des sites web et des applications mobiles capables de résoudre des problèmes réels.
+      Python fait partie des technologies que j'utilise le plus.
+      Je m'intéresse également au design numérique afin de créer des interfaces modernes
+      et agréables à utiliser. Aujourd'hui, j'explore aussi l'intelligence artificielle,
+      une technologie qui transforme le futur du développement.
+    </p>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-24 px-6 reveal">
+  <div class="max-w-xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6">Contact</h2>
+    <p class="text-gray-400 mb-10">Tu peux me contacter directement sur Telegram ou par email.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="https://t.me/+2290191747435" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 btn-gradient px-8 py-4 rounded-full text-lg font-medium text-white transition-all">
+        Discuter sur Telegram
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="mailto:abdouldiallodev10@gmail.com"
+         class="inline-flex items-center gap-2 border border-white/30 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/5 transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        abdouldiallodev10@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-white/5 py-8 text-center">
+  <p class="text-gray-600 text-sm">© 2026 Abdoul Diallo — Développeur web · Python · Django · JavaScript</p>
+</footer>
+
+<script>
+const btn = document.getElementById("menu-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+
+function toggleMenu() {
+  mobileMenu.classList.toggle("open");
+  btn.setAttribute("aria-expanded", mobileMenu.classList.contains("open"));
+}
+
+btn?.addEventListener("click", toggleMenu);
+
+document.querySelectorAll("#mobile-menu a").forEach((link) => {
+  link.addEventListener("click", () => mobileMenu.classList.contains("open") && toggleMenu());
+});
+
+function revealOnScroll() {
+  document.querySelectorAll(".reveal, .project-card").forEach((el) => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+</script>
+</body>
+</html>
