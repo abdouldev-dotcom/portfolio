@@ -7,7 +7,7 @@ dans le développement web.
 
 ## Aperçu du site
 Lien du portfolio :
-https://abdouldev-dotcom.github.io/nom-du-repo/
+https://abdouldev-dotcom.github.io/portofolio/
 
 ## Projets présentés
 
