@@ -12,7 +12,11 @@ https://abdouldev-dotcom.github.io/portfolio/
 ## Projets présentés
 
 ### Gestionnaire des employés
-Application web permettant de gérer les employés d’une entreprise.
+Application web de gestion des employés permettant aux entreprises
+de centraliser les informations du personnel.
+Système CRUD complet avec Django pour gérer
+l’ajout, la modification et la suppression des employés avec leur nom, email, poste et salaire
+ainsi qu’une interface utilisateur claire et responsive.
 
 Fonctionnalités :
 - Ajouter un employé
